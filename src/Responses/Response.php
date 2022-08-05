@@ -5,19 +5,19 @@ namespace IPay88\Responses;
 use IPay88\Base;
 
 class Response extends Base{
-    protected $resMerchantCode;
+    protected $respMerchantCode;
 
-	protected $resPaymentId;
+	protected $respPaymentId;
 
-	protected $resRefNo;
+	protected $respRefNo;
 
-	protected $resAmount;
+	protected $respAmount;
 
-	protected $resStatus;
+	protected $respStatus;
 
-	protected $resSignature;
+	protected $respSignature;
 
-	protected $additionalResults;
+	protected $extraResults;
 
 	protected $mandatoryFields = [
 		'MerchantCode',
@@ -33,14 +33,14 @@ class Response extends Base{
 	{
 		parent::__construct();
 
-		$this->resMerchantCode = $request['MerchantCode'];
-		$this->resPaymentId = $request['PaymentId'];
-		$this->resRefNo = $request['RefNo'];
-		$this->resAmount = $request['Amount'];
+		$this->respMerchantCode = $request['MerchantCode'];
+		$this->respPaymentId = $request['PaymentId'];
+		$this->respRefNo = $request['RefNo'];
+		$this->respAmount = $request['Amount'];
 		$this->resCurrency = $request['Currency'];
-		$this->resStatus = $request['Status'];
-		$this->resSignature = $request['Signature'];
-		$this->additionalResults = Arr::except($request, $this->mandatoryFields);
+		$this->respStatus = $request['Status'];
+		$this->respSignature = $request['Signature'];
+		$this->extraResults = Arr::except($request, $this->mandatoryFields);
 
 		if($validation){
 			self::verifySignature();
@@ -51,12 +51,12 @@ class Response extends Base{
 	{	
 		$payload = [
 			$this->merchantKey,
-			$this->resMerchantCode,
-			$this->resPaymentId,
-			$this->resRefNo,
-			preg_replace('/[\.\,]/', '', $this->resAmount),
+			$this->respMerchantCode,
+			$this->respPaymentId,
+			$this->respRefNo,
+			preg_replace('/[\.\,]/', '', $this->respAmount),
 			$this->resCurrency,
-			$this->resStatus
+			$this->respStatus
 		];
 
 		$signature = self::generateSignature( join('',$payload) );
@@ -66,7 +66,7 @@ class Response extends Base{
 
 	public function verifySignature() : bool
 	{
-		$verified = ($this->resSignature == self::generateResponseSignature());
+		$verified = ($this->respSignature == self::generateResponseSignature());
 		
 		if(!$verified){
 			throw new InvalidSignatureException;		
@@ -77,11 +77,11 @@ class Response extends Base{
 
 	public function isSuccess() : bool
 	{
-		return $this->resStatus == 1;
+		return $this->respStatus == 1;
 	}
 
-	public function getAdditionalResults() : Array
+	public function getExtraResults() : Array
 	{
-		return $this->additionalResults;
+		return $this->extraResults;
 	}
 }

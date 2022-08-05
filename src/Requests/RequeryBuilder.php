@@ -40,7 +40,7 @@ class RequeryBuilder extends Base{
 		return $this->resultMessage;
 	}
 
-	public function handleable() : array
+	public function handler() : array
 	{
 		return [ 
 			self::STATUS_PAYMENT_SUCCESS,
@@ -70,7 +70,7 @@ class RequeryBuilder extends Base{
 	    	throw new DailyRequeryLimitException();
 	    }
 
-	    if( !in_array($upper_curl_result, $this->handleable() ) ){
+	    if( !in_array($upper_curl_result, $this->handler() ) ){
 	    	throw new BadRequestException($curl_result);
 	    }
 
