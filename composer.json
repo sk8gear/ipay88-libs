@@ -1,0 +1,28 @@
+{
+    "name": "sk8gear/ipay88",
+    "description": "",
+    "keywords": ["laravel", "ipay88"], 
+    "type": "library",
+    "require":{
+        "php": ">=7.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ferdiansyah",
+            "email": "ferdyrachman1990@yahoo.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "IPay88\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel":{
+            "providers":[
+                "IPay88\\ServiceProvider"
+            ]
+        }
+    }
+}
