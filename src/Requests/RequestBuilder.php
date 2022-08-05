@@ -130,10 +130,12 @@ class RequestBuilder extends Base{
     public function makePayment($data = null){
         $ch = curl_init($this->requestURL);    
         
-        $payload = json_encode();
+        $payload = json_encode($this->requestArray());
         
         \curl_setopt($ch, CURLOPT_POST, 1);
-        \curl_setopt($ch, CURLOPT_POSTFILEDS);
+        \curl_setopt($ch, CURLOPT_POSTFILEDS, $this->requestArray());
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
+        $response = \curl_exec($ch);
     }
 }
