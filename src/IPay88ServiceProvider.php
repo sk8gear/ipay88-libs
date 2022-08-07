@@ -16,7 +16,5 @@ class IPay88ServiceProvider extends ServiceProvider{
         $this->publishes([
            \dirname(__DIR__).'/resources/views' => resource_path('views/vendor/iPay88'),
         ], 'views');
-
     }
-
 }

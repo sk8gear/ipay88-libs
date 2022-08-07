@@ -1,6 +1,6 @@
 {
     "name": "sk8gear/ipay88-libs",
-    "description": "",
+    "description": "IPay88 Integration for Laravel",
     "keywords": ["laravel", "ipay88"], 
     "type": "library",
     "require":{
