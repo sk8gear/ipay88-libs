@@ -78,10 +78,6 @@ class RequestBuilder extends Base{
 		$this->remark = $remark;
 	}
 
-	public function setSignature($signature){
-		$this->signature = $signature;
-	}
-
 	public function setResponseURL($responseURL){
 		$this->responseURL = $responseURL;
 	}
