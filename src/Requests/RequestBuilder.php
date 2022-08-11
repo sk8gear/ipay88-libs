@@ -126,7 +126,9 @@ class RequestBuilder extends Base{
         ];
     }
 
-
+	/**
+	 * 
+	 */
     public function makePayment($data = null){		
         // $ch = curl_init($this->requestURL);    
         
@@ -137,5 +139,11 @@ class RequestBuilder extends Base{
         // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         // $response = \curl_exec($ch);
+		
+		return view('iPay88::form', [
+			"requestUrl" => $this->requestURL,
+			"dataload" => $this->requestArray(),
+			"data" => $data,
+		]);
     }
 }
