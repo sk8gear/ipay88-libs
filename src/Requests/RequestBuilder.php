@@ -118,7 +118,7 @@ class RequestBuilder extends Base{
 			'UserEmail' => $this->userEmail,
 			'UserContact' => $this->userContact,
 			'Remark'=>  $this->remark,
-			'Lang' => $this->lang,
+			'Lang' => $this->unicode,
 			'SignatureType' => $this->signatureType,
 			'Signature' => $this->signature,
 			'ResponseURL' => $this->responseURL,
