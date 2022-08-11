@@ -99,7 +99,7 @@ class RequestBuilder extends Base{
 			$this->currency
         ];
 
-        $this->signature = self::generateHashSignature(join('', $payload));
+        $this->signature = self::generateHashSignature(join('', $str));
 
         return $this->signature;
     }
